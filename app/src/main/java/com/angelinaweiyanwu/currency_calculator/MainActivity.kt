@@ -30,7 +30,9 @@ class MainActivity : AppCompatActivity() {
         spinner.adapter = adapter
         val spinner2 : Spinner = findViewById(R.id.spinner2)
         val adapter2 = adapter.createFromResource(
-            this,            R.array.currency,            R.layout.spinner_layout        )
+            this,
+            R.array.currency,
+            R.layout.spinner_layout        )
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         spinner2.adapter = adapter
     }
