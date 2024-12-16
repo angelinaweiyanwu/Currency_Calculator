@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.angelinaweiyanwu.currency_calculator"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.angelinaweiyanwu.currency_calculator"
-        minSdk = 35
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
