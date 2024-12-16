@@ -50,4 +50,18 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
         app:layout_constraintVertical_bias="0.054" />
 
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="337dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
