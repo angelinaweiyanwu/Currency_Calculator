@@ -26,42 +26,46 @@
 
     <EditText
         android:id="@+id/editTextNumberDecimal"
-        android:layout_width="273dp"
-        android:layout_height="55dp"
+        android:layout_width="247dp"
+        android:layout_height="44dp"
         android:ems="10"
         android:hint="From"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spinner1"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <EditText
         android:id="@+id/editTextNumberDecimal2"
-        android:layout_width="275dp"
-        android:layout_height="50dp"
+        android:layout_width="242dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:hint="To"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spinner2"
+        app:layout_constraintHorizontal_bias="0.688"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="290dp" />
+        android:layout_width="76dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="143dp" />
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="337dp" />
+        android:layout_width="77dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="213dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
