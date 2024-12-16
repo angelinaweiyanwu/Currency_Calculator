@@ -5,15 +5,186 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="78dp"
+    tools:layout_editor_absoluteY="2dp">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="308dp"
+        android:layout_height="321dp"
+        android:background="#2A2828"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal2"
+        app:layout_constraintVertical_bias="0.701" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="-"
+        tools:layout_editor_absoluteX="285dp"
+        tools:layout_editor_absoluteY="577dp" />
+
+    <Button
+        android:id="@+id/buttoncomma"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="16dp"
+        android:text=","
+        app:layout_constraintEnd_toStartOf="@+id/button_enter"
+        tools:layout_editor_absoluteY="705dp" />
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="9"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="6"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="577dp" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="3"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="+"
+        tools:layout_editor_absoluteX="285dp"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="118dp"
+        android:layout_height="43dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toStartOf="@+id/buttoncomma"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="C"
+        tools:layout_editor_absoluteX="285dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/button_enter"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="="
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toEndOf="@+id/materialToolbar" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="8"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="5"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="577dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="2"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="7"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="1"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:text="4"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="577dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/title"
+        android:layout_width="124dp"
+        android:layout_height="46dp"
+        android:elegantTextHeight="true"
+        android:text="Convert"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        android:layout_width="273dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="From"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal2"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="To"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
+        app:layout_constraintVertical_bias="0.054" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
