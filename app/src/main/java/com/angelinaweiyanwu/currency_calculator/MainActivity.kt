@@ -2,100 +2,94 @@ package com.angelinaweiyanwu.currency_calculator
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Spinner
-import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
-    // Umrechnungskurse
-    private val rates = mapOf(
-        "EUR-GBP" to 0.84,
-        "EUR-CNY" to 7.90,
-        "GBP-EUR" to 1.19,
-        "GBP-CNY" to 9.38,
-        "CNY-EUR" to 0.13,
-        "CNY-GBP" to 0.11
-    )
+    private lateinit var viewModel: CurrencyViewModel
+    private lateinit var spinner1: Spinner
+    private lateinit var spinner2: Spinner
+    private lateinit var editTextFrom: EditText
+    private lateinit var editTextTo: EditText
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        val spinner: Spinner = findViewById(R.id.spinner1)
-        val adapter = ArrayAdapter.createFromResource(
+        viewModel = ViewModelProvider(this)[CurrencyViewModel::class.java]
+
+        spinner1 = findViewById(R.id.spinner1)
+        spinner2 = findViewById(R.id.spinner2)
+        editTextFrom = findViewById(R.id.editTextNumberDecimal)
+        editTextTo = findViewById(R.id.editTextNumberDecimal2)
+
+        setupSpinners()
+        setupTextWatcher()
+        observeRates()
+
+        // Initial rate fetch
+        viewModel.fetchRates("EUR")
+    }
+
+    private fun setupSpinners() {
+        ArrayAdapter.createFromResource(
             this,
             R.array.currency,
             R.layout.spinner_layout
-        )
-        adapter.setDropDownViewResource(R.layout.spinner_layout)
-        spinner.adapter = adapter
-
-        val spinner2: Spinner = findViewById(R.id.spinner2)
-        val adapter2 = ArrayAdapter.createFromResource(
-            this,
-            R.array.currency,
-            R.layout.spinner_layout
-        )
-        adapter2.setDropDownViewResource(R.layout.spinner_layout)
-        spinner2.adapter = adapter2
-
-        // Neue Komponenten für die Währungsumrechnung
-        val fromAmount = findViewById<EditText>(R.id.editTextNumberDecimal)
-        val toAmount = findViewById<EditText>(R.id.editTextNumberDecimal2)
-
-        // Funktion zur Währungsumrechnung
-        fun convert() {
-            val input = fromAmount.text.toString()
-            if (input.isEmpty()) {
-                toAmount.setText("")
-                return
-            }
-
-            try {
-                val amount = input.toDouble()
-                val from = spinner.selectedItem.toString()
-                val to = spinner2.selectedItem.toString()
-
-                val result = if (from == to) {
-                    amount  // Gleiche Währung = gleicher Betrag
-                } else {
-                    val rate = rates["$from-$to"] ?: 1.0
-                    amount * rate
-                }
-
-                toAmount.setText(String.format("%.2f", result))
-            } catch (e: Exception) {
-                toAmount.setText("")
-            }
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.spinner_layout)
+            spinner1.adapter = adapter
+            spinner2.adapter = adapter
         }
 
-        fromAmount.addTextChangedListener(object : TextWatcher {
+        val spinnerListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                updateConversion()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+        spinner1.onItemSelectedListener = spinnerListener
+        spinner2.onItemSelectedListener = spinnerListener
+    }
+
+    private fun setupTextWatcher() {
+        editTextFrom.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) { convert() }
-        })
-
-        val spinnerListener = object : android.widget.AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
-                convert()
+            override fun afterTextChanged(s: Editable?) {
+                updateConversion()
             }
-            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        })
+    }
+
+    private fun observeRates() {
+        viewModel.exchangeRates.observe(this) {
+            updateConversion()
         }
 
-        spinner.onItemSelectedListener = spinnerListener
-        spinner2.onItemSelectedListener = spinnerListener
+        viewModel.error.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun updateConversion() {
+        val amount = editTextFrom.text.toString().toDoubleOrNull() ?: 0.0
+        val fromCurrency = spinner1.selectedItem?.toString() ?: return
+        val toCurrency = spinner2.selectedItem?.toString() ?: return
+
+        val result = viewModel.convertCurrency(amount, fromCurrency, toCurrency)
+        editTextTo.setText(String.format("%.2f", result))
     }
 }
