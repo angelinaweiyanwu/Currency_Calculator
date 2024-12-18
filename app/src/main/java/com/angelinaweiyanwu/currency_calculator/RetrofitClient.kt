@@ -1,5 +1,8 @@
 package com.angelinaweiyanwu.currency_calculator
 
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 object RetrofitClient {
     private const val BASE_URL = "https://v6.exchangerate-api.com/"
 
