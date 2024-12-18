@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">currency_calculator</string>
+    <string name="exchange_rate_api_key">16d68c576083eb547208dbe0</string>
 </resources>
