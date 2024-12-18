@@ -23,7 +23,7 @@ class CurrencyViewModel : ViewModel() {
                 )
                 if (response.isSuccessful && response.body()?.result == "success") {
                     response.body()?.let { rateResponse ->
-                        _exchangeRates.value = ExchangeRateResponse.conversion_rates
+                        _exchangeRates.value = rateResponse.conversion_rates
                     }
                 } else {
                     _error.value = "Failed to fetch rates"
