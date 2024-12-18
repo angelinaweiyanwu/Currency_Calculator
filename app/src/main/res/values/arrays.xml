@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="currency">
-        <item> EUR</item>
-        <item> GBP</item>
-        <item> CNY</item>
-    </array>
+    <string-array name="currency">
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>CNY</item>
+    </string-array>
 </resources>
